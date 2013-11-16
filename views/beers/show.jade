@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  h1= title
+
+  p
+    | Nome: #{cerveja.name}
+    br
+    | Álcool: #{cerveja.alcohol}
+    br
+    | Categoria: #{cerveja.category}
+    br
+    | Descrição: #{cerveja.description}
+    br
+    br
+
+    a(href="/beers/update/#{cerveja._id}") Edit
+    -
+    a(href="/beers/delete/#{cerveja._id}") Delete

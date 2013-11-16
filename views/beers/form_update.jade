@@ -5,12 +5,7 @@ block content
 
   p= cerveja
 
-  if acao == 'create'
-    - var url = '/beers'
-    - var cerveja = {}
-  else
-    - var url = '/beers/'+cerveja._id
-  form(action=url, method='POST')
+  form(action='/beers/#{cerveja.id}', method='POST')
     label
       span Nome
       input(type='text', name='name', placeholder='name', value='#{cerveja.name}')
@@ -28,8 +23,4 @@ block content
       textarea(name='description', placeholder='description', value='#{cerveja.description}')
 
     input(type='submit', value='Enviar')
-
-    if acao == 'update'
-      input(type='hidden', name='_method', value='PUT')
-    if acao == 'delete'
-      input(type='hidden', name='_method', value='DELETE')
+    input(type='hidden', name='_method', value='PUT')

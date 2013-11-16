@@ -39,9 +39,18 @@ app.get('/expose/:dir/name', function (req, res) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+// JSON API
 app.get('/beers', beer.list);
 app.post('/beers', beer.create);
+app.put('/beers/:id', beer.update);
+app.delete('/beers/:id', beer.delete);
+
+// RENDER VIEW
+app.get('/beers/show/:id', beer.showBeer);
 app.get('/beers/create', beer.showCreate);
+app.get('/beers/update/:id', beer.showUpdate);
+app.get('/beers/delete/:id', beer.showDelete);
 
 app.get('/teste', function (req, res) {
 	res.render('teste', {nome: 'Acauã'});

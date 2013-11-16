@@ -3,6 +3,12 @@ extends ../layout
 block content
   h1= title
 
+  h2= msg
+
   for cerveja in cervejas
-    li #{cerveja.name} - #{cerveja.category}
-      a(href="/beers/#{cerveja._id}")
+    li #{cerveja.name} - #{cerveja.category} -
+      a(href="/beers/update/#{cerveja._id}") Edit
+      -
+      a(href="/beers/show/#{cerveja._id}") Show
+      -
+      a(href="/beers/update/#{cerveja._id}") Edit

@@ -104,7 +104,7 @@ exports.create = module.exports.create = function(req, res){
 	      console.log(err);
 	      return err;
 	    } else {
-	      res.render('beers/list', {title: 'Minhas cervejas', cervejas: beers});
+	      res.render('beers/list', {title: 'Minhas cervejas', msg: 'Cerveja cadastrada com sucesso', cervejas: beers});
 	    }
 	  });
     }
@@ -113,9 +113,50 @@ exports.create = module.exports.create = function(req, res){
 
 exports.retrieve = module.exports.retrieve = Db.retrieve;
 
-exports.update = module.exports.update = Db.update;
+exports.update = module.exports.update = function (req, res) {
+	var id = req.params.id;
+	var query = {_id: id};
+	var dados = req.body;
 
-exports.delete = module.exports.delete = Db.delete;
+	Beer.update(query, dados, function(err, beer) {
+	    if(err) {
+	      console.log(err);
+	    } else {
+	      console.log('Cerveja atualizada com sucesso', beer);
+	   	  var query = {};
+			Beer.find(query, function (err, beers) {
+			if(err) {
+			  console.log(err);
+			  return err;
+			} else {
+			  res.render('beers/list', {title: 'Minhas cervejas', msg: 'Cerveja cadastrada com sucesso', cervejas: beers});
+			}
+			});
+	    }
+	  });
+};
+
+exports.delete = module.exports.delete = function(req, res){
+  var id = req.params.id;
+  var query = {_id: id};
+
+  Beer.remove(query, function (err, beers) {
+    if(err) {
+      console.log(err);
+      return err;
+    } else {
+      var query = {};
+      Beer.find(query, function (err, beers) {
+        if(err) {
+          console.log(err);
+          return err;
+        } else {
+          res.render('beers/list', {cervejas: beers});
+        }
+      });
+    }
+  });
+};
 
 exports.list = module.exports.list = function(req, res){
 
@@ -132,5 +173,49 @@ exports.list = module.exports.list = function(req, res){
 }
 
 exports.showCreate = function(req, res){
-  res.render('beers/form');
+  res.render('beers/form', {acao: 'create'});
+}
+
+exports.showUpdate = function (req, res) {
+  var id = req.params.id;
+
+  var query = {_id: id};
+
+  Beer.findOne(query, function (err, beers) {
+    if(err) {
+      console.log(err);
+      return err;
+    } else {
+      res.render('beers/form', {title: 'Minhas cervejas', acao: 'update', cerveja: beers});
+    }
+  });
+}
+
+exports.showBeer = function (req, res) {
+  var id = req.params.id;
+  var query = {_id: id};
+
+  Beer.findOne(query, function (err, beers) {
+    if(err) {
+      console.log(err);
+      return err;
+    } else {
+      res.render('beers/show', {title: 'Minhas cervejas', cerveja: beers});
+    }
+  });
+}
+
+exports.showDelete = module.exports.showDelete = function(req, res){
+  var id = req.params.id;
+
+  var query = {_id: id};
+
+  Beer.findOne(query, function (err, beers) {
+    if(err) {
+      console.log(err);
+      return err;
+    } else {
+      res.render('beers/form', {acao: 'delete', cerveja: beers});
+    }
+  });
 }
