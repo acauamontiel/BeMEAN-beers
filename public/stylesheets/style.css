@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+form label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+form span {
+	display: block;
+}
+
+form input[type='submit'] {
+	display: block;
+}
+
+form input[type='text'] {
+	padding: 0 5px;
+	line-height: 25px;
+}
+
+form textarea {
+	padding: 0 5px;
+	line-height: 25px;
+}

@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  h1= title
+
+  for cerveja in cervejas
+    li #{cerveja.name} - #{cerveja.category}
+      a(href="/beers/#{cerveja._id}")

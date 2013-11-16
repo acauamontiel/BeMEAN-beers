@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1= title
+
+  form(action='/beers', method='POST')
+    label
+      span Nome
+      input(type='text', name='name', placeholder='name')
+
+    label
+      span Categoria
+      input(type='text', name='category', placeholder='category')
+
+    label
+      span Alcool
+      input(type='text', name='alcohol', placeholder='alcohol')
+
+    label
+      span Descrição
+      textarea(name='description', placeholder='description')
+
+    input(type='submit', value='Enviar')
