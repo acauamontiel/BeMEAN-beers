@@ -47,11 +47,12 @@ app.put('/beers/:id', beer.update);
 app.delete('/beers/:id', beer.delete);
 
 // RENDER VIEW
-app.get('/beers/show/:id', beer.showBeer);
-app.get('/beers/create', beer.showCreate);
-app.get('/beers/update/:id', beer.showUpdate);
-app.get('/beers/delete/:id', beer.showDelete);
+app.get('/beers/add', beer.showCreate);
+app.get('/beers/view/:id', beer.showBeer);
+app.get('/beers/edit/:id', beer.showUpdate);
+app.get('/beers/del/:id', beer.showDelete);
 
+// Teste
 app.get('/teste', function (req, res) {
 	res.render('teste', {nome: 'Acauã'});
 })

@@ -3,33 +3,38 @@ extends ../layout
 block content
   h1= title
 
-  p= cerveja
-
   if acao == 'create'
-    - var url = '/beers'
-    - var cerveja = {}
-  else
-    - var url = '/beers/'+cerveja._id
+    - var create = true
+
+  - var url = create ? '/beers' : '/beers/' + cerveja._id
+  - var name = create ? '' : cerveja.name
+  - var alcohol = create ? '' : cerveja.alcohol
+  - var category = create ? '' : cerveja.category
+  - var description = create ? '' : cerveja.description
+
   form(action=url, method='POST')
-    label
-      span Nome
-      input(type='text', name='name', placeholder='name', value='#{cerveja.name}')
-
-    label
-      span Teor alcoólico
-      input(type='text', name='alcohol', placeholder='alcohol', value='#{cerveja.alcohol}')
-
-    label
-      span Categoria
-      input(type='text', name='category', placeholder='category', value='#{cerveja.category}')
-
-    label
-      span Descrição
-      textarea(name='description', placeholder='description', value='#{cerveja.description}')
-
-    input(type='submit', value='Enviar')
-
-    if acao == 'update'
-      input(type='hidden', name='_method', value='PUT')
     if acao == 'delete'
       input(type='hidden', name='_method', value='DELETE')
+      input.bt.del(type='submit', value='DELETAR')
+    else
+      label
+        span Nome
+        input.field(type='text', name='name', placeholder='name', value=name)
+
+      label
+        span Teor alcoólico
+        input.field(type='text', name='alcohol', placeholder='alcohol', value=alcohol)
+
+      label
+        span Categoria
+        input.field(type='text', name='category', placeholder='category', value=category)
+
+      label
+        span Descrição
+        textarea.field(name='description', placeholder='description', rows='3')= description
+
+      if acao == 'update'
+        input(type='hidden', name='_method', value='PUT')
+        input.bt(type='submit', value='ALTERAR')
+      if acao == 'create'
+        input.bt(type='submit', value='Enviar')

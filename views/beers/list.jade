@@ -6,9 +6,10 @@ block content
   h2= msg
 
   for cerveja in cervejas
-    li #{cerveja.name} - #{cerveja.category} -
-      a(href="/beers/update/#{cerveja._id}") Edit
-      -
-      a(href="/beers/show/#{cerveja._id}") Show
-      -
-      a(href="/beers/update/#{cerveja._id}") Edit
+    li #{cerveja.name} - #{cerveja.category}
+      br
+      a.bt(href="/beers/view/#{cerveja._id}") View
+      a.bt(href="/beers/edit/#{cerveja._id}") Edit
+      a.bt.del(href="/beers/del/#{cerveja._id}") Delete
+
+  a.bt(href="/beers/add") Add
