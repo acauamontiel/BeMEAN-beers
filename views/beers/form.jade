@@ -15,26 +15,27 @@ block content
   form(action=url, method='POST')
     if acao == 'delete'
       input(type='hidden', name='_method', value='DELETE')
-      input.bt.del(type='submit', value='DELETAR')
+      input.bt.del(type='submit', value='Sim')
+      a.bt(href="/beers") Não
     else
       label
         span Nome
-        input.field(type='text', name='name', placeholder='name', value=name)
+        input.field(type='text', name='name', placeholder='Nome', value=name)
 
       label
         span Teor alcoólico
-        input.field(type='text', name='alcohol', placeholder='alcohol', value=alcohol)
+        input.field(type='text', name='alcohol', placeholder='Teor alcoólico', value=alcohol)
 
       label
         span Categoria
-        input.field(type='text', name='category', placeholder='category', value=category)
+        input.field(type='text', name='category', placeholder='Categoria', value=category)
 
       label
         span Descrição
-        textarea.field(name='description', placeholder='description', rows='3')= description
+        textarea.field(name='description', placeholder='Descrição', rows='5')= description
 
       if acao == 'update'
         input(type='hidden', name='_method', value='PUT')
-        input.bt(type='submit', value='ALTERAR')
+        input.bt(type='submit', value='Alterar')
       if acao == 'create'
-        input.bt(type='submit', value='Enviar')
+        input.bt(type='submit', value='Adicionar')
